@@ -1,9 +1,18 @@
-from socket  import *
-from constCS import * #-
+from socket import *
+from constCS import *  #-
 
 s = socket(AF_INET, SOCK_STREAM)
-s.connect((HOST, PORT)) # connect to server (block until accepted)
-s.send(str.encode('Hello, world'))  # send some data
-data = s.recv(1024)     # receive the response
-print (bytes.decode(data))            # print the result
-s.close()               # close the connection
+s.connect((HOST, PORT))  # connect to server (block until accepted)
+
+
+num1 = input("Digite o primeiro número: ")
+num2 = input("Digite o segundo número: ")
+operação = input("Digite a operação (add, subtract, multiply, divide): ")
+
+mensagem = f"{num1} {num2} {operação}"
+
+s.send(str.encode(mensagem))  
+data = s.recv(1024)           
+
+print(bytes.decode(data))    
+s.close()                     
